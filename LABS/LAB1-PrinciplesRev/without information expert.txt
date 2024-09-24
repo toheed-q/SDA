@@ -1,0 +1,58 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Purchase {
+    private double amount;
+
+    public Purchase(double amount) {
+        this.amount = amount;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+}
+
+class PurchaseCalculator {
+    public static double calculateTotalPurchases(Customer customer) {
+        double total = 0;
+        for (Purchase purchase : customer.getPurchases()) {
+            total += purchase.getAmount();
+        }
+        return total;
+    }
+}
+
+class Customer {
+    private String name;
+    private List<Purchase> purchases;
+
+    public Customer(String name) {
+        this.name = name;
+        this.purchases = new ArrayList<>();
+    }
+
+    public void addPurchase(Purchase purchase) {
+        purchases.add(purchase);
+    }
+
+    public List<Purchase> getPurchases() {
+        return purchases;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Customer customer = new Customer("John Doe");
+        customer.addPurchase(new Purchase(29.99));
+        customer.addPurchase(new Purchase(15.50));
+        customer.addPurchase(new Purchase(42.75));
+
+        double total = PurchaseCalculator.calculateTotalPurchases(customer);
+        System.out.println("Total purchases for " + customer.getName() + ": $" + total);
+    }
+}
