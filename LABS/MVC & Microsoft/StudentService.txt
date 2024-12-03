@@ -1,0 +1,28 @@
+//using StudentApp.Models;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace StudentApp.Services
+{
+    public class StudentService
+    {
+        private static List<Student> students = new List<Student>();
+
+        public void AddStudent(Student student)
+        {
+            student.Id = students.Count + 1;
+            students.Add(student);
+        }
+
+        public List<Student> GetStudents()
+        {
+            return students;
+        }
+
+        public Student GetStudentById(int id)
+        {
+            return students.FirstOrDefault(s => s.Id == id);
+        }
+    }
+}
+

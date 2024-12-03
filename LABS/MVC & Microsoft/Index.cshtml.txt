@@ -1,0 +1,25 @@
+@model IEnumerable<StudentApp.Models.Student>
+
+<h2>Student List</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>CGPA</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Name</td>
+                <td>@student.CGPA</td>
+                <td><a href="@Url.Action("Details", new { id = student.Id })">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Add")">Add New Student</a>
